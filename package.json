@@ -1,0 +1,28 @@
+{
+  "name": "chatsapp-server",
+  "version": "1.0.0",
+  "description": "Chatsapp server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "build": "cd client/ && npm install && npm run build"
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "client/node_modules"
+  ],
+  "keywords": [],
+  "author": "Rhuan Krum",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2",
+    "pg": "^8.0.0",
+    "socket.io": "^2.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}
