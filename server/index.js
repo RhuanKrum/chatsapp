@@ -42,14 +42,13 @@ io.on('connection', (socket) => {
         
         socket.join(user.room)
 
-        io.to(user.room).emit('room-data', { room: user.room , users: getUsersInRoom(user.room) })
+        io.to(user.room).emit('update-room-data', { room: user.room, users : getUsersInRoom(user.room) })
     })
 
     socket.on('send-message', (message, callback) => {
         const user = getUser(socket.id)
 
         io.to(user.room).emit('message', { userId: user.id, userName: user.name, text: message })
-        io.to(user.room).emit('room-data', { room: user.room, users : getUsersInRoom(user.room) })
 
         callback()
     })
@@ -58,6 +57,7 @@ io.on('connection', (socket) => {
         const user = removeUser(socket.id)
         if (user) {
             io.to(user.room).emit('message', { user: 'admin', text: `${user.name} has left.` })
+            io.to(user.room).emit('update-room-data', { room: user.room, users : getUsersInRoom(user.room) })
         }
     })
 })
