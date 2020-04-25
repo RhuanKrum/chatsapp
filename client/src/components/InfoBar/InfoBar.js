@@ -7,11 +7,11 @@ import './InfoBar.css'
 
 const InfoBar = ({ infoText }) => (
     <div className="infoBar">
-        <div className="leftInnerContainer">
+        <div className="infoBarLeftContainer">
             <img className="onlineIcon" src={onlineIcon} alt="online" />
             <h3>{ infoText }</h3>
         </div>
-        <div className="rightInnerContainer">
+        <div className="infoBarRightContainer">
             <a href="/">
                 <img src={closeIcon} alt="close" />
             </a>
