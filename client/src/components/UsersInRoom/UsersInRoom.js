@@ -18,18 +18,21 @@ const UsersInRoom = ({ socket }) => {
                 <h3>Online people:</h3>
             </div>
             {
-                users ? 
-                (
-                <div className="usersInRoomList">
-                    {users.map(({name}) => (
-                    <div key={name} className="usersInRoomUser">
-                        <img alt="Online Icon" src={onlineIcon}/> 
-                        <p>{name}</p>
+                users ? (
+                    <div className="usersInRoomList">
+                        { 
+                            users.map(({name}) => (
+                                <div key={name} className="usersInRoomUser">
+                                    <img alt="Online Icon" src={onlineIcon}/> 
+                                    <p>{name}</p>
+                                </div>
+                            ))
+                        }
                     </div>
-                    ))}
-                </div>
                 )
-                : <h3>{ReactEmoji.emojify("Nobody :(")}</h3>
+                : (
+                    <h3>{ReactEmoji.emojify("Nobody :(")}</h3>
+                )
             }
         </div>
     )

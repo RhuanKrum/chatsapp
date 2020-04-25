@@ -9,26 +9,23 @@ import Messages from '../Messages/Messages'
 import UsersInRoom from '../UsersInRoom/UsersInRoom'
 
 const Chat = ({ socket }) => {
-    const [name, setName] = useState('') // [variable, setter]
     const [room, setRoom] = useState('') // [variable, setter]
-    const [users, setUsers] = useState('')
     const [message, setMessage] = useState('') // [variable, setter]
     const [messages, setMessages] = useState([]) // [variable, setter]
     const location = useLocation()
     
     useEffect(() => {
         const { name, room } = querystring.parse(location.search)
-        setName(name)
         setRoom(room)
         socket.emit('join', { name, room })
         console.log(location)
-    }, [socket])
+    }, [socket, location])
 
     useEffect(() => {
         socket.on('message', message => {
             setMessages(messages => [...messages, message])
         })
-    }, [])
+    }, [socket])
 
     const sendMessage = (event) => {
         event.preventDefault()

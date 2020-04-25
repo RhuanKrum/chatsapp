@@ -1,25 +1,25 @@
-const express = require('express')
-const socketio = require('socket.io')
-const http = require('http')
-const cors = require('cors')
-const router = require('./router')
+import express from 'express'
+import socketio from 'socket.io'
+import { createServer } from 'http'
+import cors from 'cors'
+import router from './router'
 
-const { addUser, removeUser, getUser, getUsersInRoom, countUsersInRoom } = require('./users')
+import { addUser, removeUser, getUser, getUsersInRoom, countUsersInRoom } from './users'
 
 const PORT = process.env.PORT || 5000
 
 const app = express()
-const server = http.createServer(app)
+const server = createServer(app)
 const io = socketio(server)
 
 app.use(router)
 app.use(cors())
 
 io.on('connection', (socket) => {
+    
     socket.on('join', ({ name, room }) => {
         const existingUser = getUser(socket.id)
         if (existingUser) {
-            console.log(`User already exists...`)
             return
         }
 

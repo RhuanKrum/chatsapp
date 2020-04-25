@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import './Join.css'
 
-const Join = ({ socket }) => {
+const Join = () => {
     const [name, setName] = useState('') // [variable, setter]
     const [room, setRoom] = useState('') // [variable, setter]
     const [error, setError] = useState('')
