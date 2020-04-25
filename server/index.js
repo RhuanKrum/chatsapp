@@ -7,6 +7,7 @@ const router = require('./router')
 const { addUser, removeUser, getUser, getUsersInRoom, countUsersInRoom } = require('./users')
 
 const PORT = process.env.PORT || 5000
+const isProductionEnvironment = process.env.NODE_ENV == 'production'
 
 const app = express()
 const server = http.createServer(app)
@@ -14,6 +15,14 @@ const io = socketio(server)
 
 app.use(router)
 app.use(cors())
+
+if (isProductionEnvironment) {
+    app.use(express.static(path.resolve(__dirname, "../client/build")))
+
+    app.get('*', function (req, res) {
+        res.sendFile(path.resolve(__dirname, '../client/build', 'index.js'))
+    })
+}
 
 io.on('connection', (socket) => {
     
