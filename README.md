@@ -1,6 +1,11 @@
 # Chatsapp
 
-Chat application using NodeJS and React
+Simple chat application using NodeJS and React, and using mainly socket.io for real-time communication between client and server.
+Users may choose a user name and a room name to join a room and chat with friends.
+
+![Joining a room](https://github.com/RhuanKrum/chatsapp/blob/master/client/public/client-sample.png)
+
+![Chatting with friends](https://github.com/RhuanKrum/chatsapp/blob/master/client/public/client-sample-users.png)
 
 ## Client
 
